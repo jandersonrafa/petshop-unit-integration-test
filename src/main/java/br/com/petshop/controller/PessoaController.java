@@ -8,14 +8,17 @@ package br.com.petshop.controller;
 import br.com.petshop.model.Animal;
 import br.com.petshop.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author janderson
  */
 @RestController
-@RequestMapping("/animal")
-public class AnimalController {
+@RequestMapping("/people")
+public class PessoaController {
 
     @Autowired
     private AnimalService animalService;

@@ -1,9 +1,9 @@
 package br.com.petshop.service;
 
 import br.com.petshop.model.Animal;
-import br.com.petshop.util.AnimalUtil;
 import br.com.petshop.validator.AnimalValidator;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +17,7 @@ class AnimalValidatorTest {
     @InjectMocks
     private AnimalValidator animalValidator;
 
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
     public void whenValidAnimal () {
         // Arrange
@@ -28,6 +29,7 @@ class AnimalValidatorTest {
         // Assert
     }
 
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
     public void whenInvalidAnimalAge () {
         // Arrange
@@ -39,6 +41,7 @@ class AnimalValidatorTest {
         Assertions.assertEquals("Idade maior do que o permitido!", exception.getMessage());
     }
 
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
     public void whenInvalidAnimalName () {
         // Arrange
