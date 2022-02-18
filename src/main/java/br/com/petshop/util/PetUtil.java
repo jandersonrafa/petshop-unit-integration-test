@@ -1,15 +1,15 @@
 package br.com.petshop.util;
 
 
-import br.com.petshop.model.Animal;
+import br.com.petshop.model.Pet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnimalUtil {
+public class PetUtil {
 
 
-    public Animal newRandomAnimal() {
-        Animal items = new Animal();
+    public Pet newRandomAnimal() {
+        Pet items = new Pet();
         String randomData = "testedatatestedatatestedata";
         items.setTxName(randomData);
         items.setIrAge(2);

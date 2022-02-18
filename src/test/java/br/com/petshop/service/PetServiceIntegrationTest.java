@@ -1,14 +1,12 @@
 package br.com.petshop.service;
 
-import br.com.petshop.model.Animal;
-import br.com.petshop.repository.AnimalRepository;
+import br.com.petshop.model.Pet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -17,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class AnimalServiceIntegrationTest {
+class PetServiceIntegrationTest {
 
     @Autowired
-    private AnimalService animalService;
+    private PetService petService;
 
 //    @SpyBean
 //    private
@@ -29,19 +27,19 @@ class AnimalServiceIntegrationTest {
     @Test
     public void whenValidAnimal() {
         // Arrange
-        Animal animal = Animal.builder().txName("maoi").irAge(10).build();
+        Pet pet = Pet.builder().txName("maoi").irAge(10).build();
 
         // Act
-        Long animalId = animalService.save(animal);
+        Long petId = petService.save(pet);
 
         // Assert
-        Assertions.assertNotNull(animalId);
-        Animal animalSaved = animalService.findById(animalId).get();
+        Assertions.assertNotNull(petId);
+        Pet petSaved = petService.findById(petId).get();
 
 
-        assertAll("Should return animal saved",
-                () -> assertEquals(animal.getAnimalId(), animalSaved.getAnimalId()),
-                () -> assertEquals(animal.getIrAge(), animalSaved.getIrAge())
+        assertAll("Should return pet saved",
+                () -> assertEquals(pet.getPetId(), petSaved.getPetId()),
+                () -> assertEquals(pet.getIrAge(), petSaved.getIrAge())
         );
 
     }

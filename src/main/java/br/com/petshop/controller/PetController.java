@@ -5,8 +5,8 @@
  */
 package br.com.petshop.controller;
 
-import br.com.petshop.model.Animal;
-import br.com.petshop.service.AnimalService;
+import br.com.petshop.model.Pet;
+import br.com.petshop.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
  * @author janderson
  */
 @RestController
-@RequestMapping("/animal")
-public class AnimalController {
+@RequestMapping("/pet")
+public class PetController {
 
     @Autowired
-    private AnimalService animalService;
+    private PetService petService;
 
     @GetMapping("/insert/{name}/{age}")
     public Long insert(@PathVariable("name") String name, @PathVariable("age") Integer age) {
-        Animal animal = Animal.builder().txName(name).irAge(age).build();
-        return animalService.save(animal);
+        Pet pet = Pet.builder().txName(name).irAge(age).build();
+        return petService.save(pet);
     }
 
 }

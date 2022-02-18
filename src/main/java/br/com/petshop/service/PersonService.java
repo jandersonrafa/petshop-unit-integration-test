@@ -16,7 +16,7 @@ public class PersonService {
         return personRepository.save(pessoa).getPersonId();
     }
 
-    public Optional<Person> findById(Long animalId) {
-        return personRepository.findById(animalId);
+    public Optional<Person> findById(Long petId) {
+        return personRepository.findById(petId);
     }
 }

@@ -18,10 +18,10 @@ import org.springframework.data.annotation.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Animal {
+public class Pet {
 
     @Id
-    private Long animalId;
+    private Long petId;
     private String txName;
     private Integer irAge;
 
