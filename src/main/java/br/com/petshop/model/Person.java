@@ -18,10 +18,10 @@ import org.springframework.data.annotation.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class People {
+public class Person {
 
     @Id
-    private Long peopleId;
+    private Long personId;
     private String txName;
     private Integer irAge;
 

@@ -4,6 +4,7 @@ import br.com.petshop.model.Animal;
 import br.com.petshop.repository.AnimalRepository;
 import br.com.petshop.validator.AnimalValidator;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +37,7 @@ class AnimalServiceTest {
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
 //    @DisplayName("NECESSARIO PORQUE MOCKBEAN E SPYBEAN RESETA CONTEXTO E FICA LENTO SE FAZER NO PROPRIO,MOSTRAR CODIGO COMENTADO")
     @Test
+//    @Disabled
     public void whenValidAnimal() {
         // Arrange
         Animal animal = Animal.builder().txName("maoi").irAge(10).build();
@@ -46,7 +48,6 @@ class AnimalServiceTest {
 
         // Assert
         verify(animalValidator).validate(animal);
-
     }
 
 }

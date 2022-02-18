@@ -1,6 +1,6 @@
 package br.com.petshop.service;
 
-import br.com.petshop.model.People;
+import br.com.petshop.model.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,31 +15,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class PeopleServiceIntegrationTest {
+class PersonServiceIntegrationTest {
 
     @Autowired
-    private PeopleService peopleService;
+    private PersonService peopleService;
 
     @DisplayName("EXEMPLO TESTE INTEGRADO: TESTE NECESSÁRIO")
     @Test
-    public void whenValidPeople() {
+    public void whenSavePeople() {
         // Arrange
-        People people = People.builder().txName("maoi").irAge(10).build();
+        Person people = Person.builder().txName("maoi").irAge(10).build();
 
         // Act
         Long peopleId = peopleService.save(people);
 
         // Assert
         Assertions.assertNotNull(peopleId);
-        People peopleSaved = peopleService.findById(peopleId).get();
+        Person personSaved = peopleService.findById(peopleId).get();
 
 
         assertAll("Should return people saved",
-                () -> assertEquals(people.getPeopleId(), peopleSaved.getPeopleId()),
-                () -> assertEquals(people.getIrAge(), peopleSaved.getIrAge())
+                () -> assertEquals(people.getPersonId(), personSaved.getPersonId()),
+                () -> assertEquals(people.getIrAge(), personSaved.getIrAge())
         );
-        // NAO DEVO VALIDAR CAMPOS NAO ESSENCIAIS
-
+        // NAO SERIA NECESSARIO VALIDAR CAMPOS NAO ESSENCIAIS
     }
 
 }

@@ -1,9 +1,7 @@
 package br.com.petshop.service;
 
-import br.com.petshop.model.Animal;
-import br.com.petshop.model.People;
-import br.com.petshop.repository.PeopleRepository;
-import br.com.petshop.validator.AnimalValidator;
+import br.com.petshop.model.Person;
+import br.com.petshop.repository.PersonRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,19 +14,19 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-class PeopleServiceTest {
+class PersonServiceTest {
 
     @InjectMocks
-    private PeopleService peopleService;
+    private PersonService peopleService;
 
     @Mock
-    private PeopleRepository peopleRepository;
+    private PersonRepository peopleRepository;
 
     @DisplayName("EXEMPLO TESTE INTEGRADO: TESTE DESNECESSARIO")
     @Test
     public void whenValidPeople() {
         // Arrange
-        People people = People.builder().txName("maoi").irAge(10).build();
+        Person people = Person.builder().txName("maoi").irAge(10).build();
         when(peopleRepository.save(people)).thenReturn(people);
 
         // Act
@@ -36,7 +34,6 @@ class PeopleServiceTest {
 
         // Assert
         verify(peopleRepository).save(people);
-
     }
 
 }

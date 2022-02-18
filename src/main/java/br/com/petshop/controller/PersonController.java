@@ -5,8 +5,8 @@
  */
 package br.com.petshop.controller;
 
-import br.com.petshop.model.Animal;
-import br.com.petshop.service.AnimalService;
+import br.com.petshop.model.Person;
+import br.com.petshop.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/people")
-public class PessoaController {
+public class PersonController {
 
     @Autowired
-    private AnimalService animalService;
+    private PersonService peopleService;
 
     @GetMapping("/insert/{name}/{age}")
     public Long insert(@PathVariable("name") String name, @PathVariable("age") Integer age) {
-        Animal animal = Animal.builder().txName(name).irAge(age).build();
-        return animalService.save(animal);
+        Person people = Person.builder().txName(name).irAge(age).build();
+        return peopleService.save(people);
     }
 
 }
