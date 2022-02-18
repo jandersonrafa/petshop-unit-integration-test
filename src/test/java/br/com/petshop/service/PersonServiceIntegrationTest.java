@@ -12,26 +12,25 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class PersonServiceIntegrationTest {
 
     @Autowired
-    private PersonService peopleService;
+    private PersonService personService;
 
     @DisplayName("EXEMPLO TESTE INTEGRADO: TESTE NECESSÁRIO")
     @Test
-    public void whenSavePeople() {
-        // Arrange
-        Person people = Person.builder().txName("maoi").irAge(10).build();
+    public void shouldSavePerson() {
+        // arrange
+        Person people = Person.builder().txName("Maoi").irAge(10).build();
 
-        // Act
-        Long peopleId = peopleService.save(people);
+        // act
+        Long peopleId = personService.save(people);
 
-        // Assert
+        // assert
         Assertions.assertNotNull(peopleId);
-        Person personSaved = peopleService.findById(peopleId).get();
+        Person personSaved = personService.findById(peopleId).get();
 
 
         assertAll("Should return people saved",

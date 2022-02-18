@@ -6,15 +6,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class PetValidator {
 
-    public void validate(Pet pet) {
+    public void validateNewPet(Pet pet) {
+        if (pet.getIrAge() == null ||
+                pet.getTxName() == null) {
+            throw new RuntimeException("Invalid! Pet must have a name and age.");
+        }
+
         if (pet.getIrAge() > 30) {
-            throw new RuntimeException("Idade maior do que o permitido!");
+            throw new RuntimeException("Too old! Age not allowed for pets.");
         }
         if (pet.getIrAge() < 0) {
-            throw new RuntimeException("Idade menor do que o permitido!");
+            throw new RuntimeException("Too young! Age not allowed for pets.");
         }
         if (pet.getTxName().length() < 2) {
-            throw new RuntimeException("Nome inválido, deve conter mais que dois carácteres!");
+            throw new RuntimeException("Invalid name! Must have more than 2 characters.");
         }
     }
+
 }

@@ -12,7 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class PetServiceIntegrationTest {
@@ -25,23 +24,21 @@ class PetServiceIntegrationTest {
 
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
-    public void whenValidAnimal() {
-        // Arrange
-        Pet pet = Pet.builder().txName("maoi").irAge(10).build();
+    public void shouldSavePet() {
+        // arrange
+        Pet pet = Pet.builder().txName("Maoi").irAge(10).build();
 
-        // Act
+        // act
         Long petId = petService.save(pet);
 
-        // Assert
+        // assert
         Assertions.assertNotNull(petId);
-        Pet petSaved = petService.findById(petId).get();
+        Pet savedPet = petService.findById(petId).get();
 
-
-        assertAll("Should return pet saved",
-                () -> assertEquals(pet.getPetId(), petSaved.getPetId()),
-                () -> assertEquals(pet.getIrAge(), petSaved.getIrAge())
+        assertAll("Should return saved pet",
+                () -> assertEquals(pet.getPetId(), savedPet.getPetId()),
+                () -> assertEquals(pet.getIrAge(), savedPet.getIrAge())
         );
-
     }
 
 }

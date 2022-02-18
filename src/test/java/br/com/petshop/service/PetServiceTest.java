@@ -3,6 +3,7 @@ package br.com.petshop.service;
 import br.com.petshop.model.Pet;
 import br.com.petshop.repository.PetRepository;
 import br.com.petshop.validator.PetValidator;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,19 +28,19 @@ class PetServiceTest {
     private PetRepository petRepository;
 
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
-//    @DisplayName("NECESSARIO PORQUE MOCKBEAN E SPYBEAN RESETA CONTEXTO E FICA LENTO SE FAZER NO PROPRIO,MOSTRAR CODIGO COMENTADO")
+//    @DisplayName("NECESSARIO PORQUE MOCKBEAN E SPYBEAN RESETA CONTEXTO E FICA LENTO SE FIZER NO PROPRIO, MOSTRAR CODIGO COMENTADO")
     @Test
-//    @Disabled
-    public void whenValidAnimal() {
-        // Arrange
-        Pet pet = Pet.builder().txName("maoi").irAge(10).build();
+    @Disabled
+    public void shouldSavePet() {
+        // arrange
+        Pet pet = Pet.builder().txName("Maoi").irAge(10).build();
         when(petRepository.save(pet)).thenReturn(pet);
 
-        // Act
+        // act
         Long petId = petService.save(pet);
 
-        // Assert
-        verify(petValidator).validate(pet);
+        // assert
+        verify(petValidator).validateNewPet(pet);
     }
 
 }

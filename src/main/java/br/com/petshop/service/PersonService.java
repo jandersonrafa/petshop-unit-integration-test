@@ -9,14 +9,16 @@ import java.util.Optional;
 
 @Service
 public class PersonService {
+
     @Autowired
     private PersonRepository personRepository;
 
-    public Long save(Person pessoa) {
-        return personRepository.save(pessoa).getPersonId();
+    public Long save(Person person) {
+        return personRepository.save(person).getPersonId();
     }
 
     public Optional<Person> findById(Long petId) {
         return personRepository.findById(petId);
     }
+
 }

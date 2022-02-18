@@ -8,9 +8,7 @@ package br.com.petshop.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-
 /**
- *
  * @author janderson
  */
 @Getter

@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author janderson
  */
 @RestController
-@RequestMapping("/people")
+@RequestMapping("/person")
 public class PersonController {
 
     @Autowired
-    private PersonService peopleService;
+    private PersonService personService;
 
     @GetMapping("/insert/{name}/{age}")
     public Long insert(@PathVariable("name") String name, @PathVariable("age") Integer age) {
         Person people = Person.builder().txName(name).irAge(age).build();
-        return peopleService.save(people);
+        return personService.save(people);
     }
 
 }

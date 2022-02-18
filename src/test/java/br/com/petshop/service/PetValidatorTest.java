@@ -2,13 +2,13 @@ package br.com.petshop.service;
 
 import br.com.petshop.model.Pet;
 import br.com.petshop.validator.PetValidator;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
@@ -19,38 +19,62 @@ class PetValidatorTest {
 
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
-    public void whenValidAnimal () {
-        // Arrange
-        Pet pet = Pet.builder().txName("maoi").irAge(10).build();
+    public void shouldValidateNewPet() {
+        // arrange
+        Pet pet = Pet.builder().txName("Maoi").irAge(10).build();
 
-        // Act
-        petValidator.validate(pet);
-
-        // Assert
+        // act && assert
+        assertDoesNotThrow(() -> petValidator.validateNewPet(pet));
     }
 
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
-    public void whenInvalidAnimalAge () {
-        // Arrange
-        Pet pet = Pet.builder().txName("maoi").irAge(31).build();
+    public void shouldThrowExceptionWhenPetAgeIsAbove30() {
+        // arrange
+        Pet pet = Pet.builder().txName("Maoi").irAge(31).build();
 
-        // Act
-        // Assert
-        RuntimeException exception =  assertThrows(RuntimeException.class, () ->  petValidator.validate(pet));
-        Assertions.assertEquals("Idade maior do que o permitido!", exception.getMessage());
+        // act && assert
+        assertThrows(RuntimeException.class, () -> petValidator.validateNewPet(pet));
     }
 
     @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
     @Test
-    public void whenInvalidAnimalName () {
-        // Arrange
+    public void shouldThrowExceptionWhenPetAgeIsUnder0() {
+        // arrange
+        Pet pet = Pet.builder().txName("Maoi").irAge(-1).build();
+
+        // act && assert
+        assertThrows(RuntimeException.class, () -> petValidator.validateNewPet(pet));
+    }
+
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
+    @Test
+    public void shouldThrowExceptionWhenPetNameIsTooShort() {
+        // arrange
         Pet pet = Pet.builder().txName("t").irAge(10).build();
 
-        // Act
-        // Assert
-        RuntimeException exception =  assertThrows(RuntimeException.class, () ->  petValidator.validate(pet));
-        Assertions.assertEquals("Nome inválido, deve conter mais que dois carácteres!", exception.getMessage());
+        // act && assert
+        assertThrows(RuntimeException.class, () -> petValidator.validateNewPet(pet));
+    }
+
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
+    @Test
+    public void shouldThrowExceptionWhenPetNameIsNull() {
+        // arrange
+        Pet pet = Pet.builder().txName("t").irAge(10).build();
+
+        // act && assert
+        assertThrows(RuntimeException.class, () -> petValidator.validateNewPet(pet));
+    }
+
+    @DisplayName("EXEMPLO TESTE INTEGRADO E UNITARIO: TESTE NECESSÁRIO")
+    @Test
+    public void shouldThrowExceptionWhenPetAgeIsNull() {
+        // arrange
+        Pet pet = Pet.builder().txName("t").irAge(10).build();
+
+        // act && assert
+        assertThrows(RuntimeException.class, () -> petValidator.validateNewPet(pet));
     }
 
 }

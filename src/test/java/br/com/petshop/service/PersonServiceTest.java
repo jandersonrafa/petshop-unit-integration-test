@@ -12,28 +12,27 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
 @ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
 
     @InjectMocks
-    private PersonService peopleService;
+    private PersonService personService;
 
     @Mock
-    private PersonRepository peopleRepository;
+    private PersonRepository personRepository;
 
-    @DisplayName("EXEMPLO TESTE INTEGRADO: TESTE DESNECESSARIO")
+    @DisplayName("EXEMPLO TESTE UNITARIO: TESTE DESNECESSARIO")
     @Test
-    public void whenValidPeople() {
-        // Arrange
-        Person people = Person.builder().txName("maoi").irAge(10).build();
-        when(peopleRepository.save(people)).thenReturn(people);
+    public void shouldSavePerson() {
+        // arrange
+        Person person = Person.builder().txName("Maoi").irAge(10).build();
+        when(personRepository.save(person)).thenReturn(person);
 
-        // Act
-        Long peopleId = peopleService.save(people);
+        // act
+        Long personId = personService.save(person);
 
-        // Assert
-        verify(peopleRepository).save(people);
+        // assert
+        verify(personRepository).save(person);
     }
 
 }
